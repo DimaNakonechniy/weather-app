@@ -1,5 +1,3 @@
-const App = () => {
-  return <div className="App">React app</div>;
-};
+const App = () => <div className="App">React app content</div>;
 
 export default App;
