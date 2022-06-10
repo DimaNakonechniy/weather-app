@@ -2,12 +2,9 @@ import axios, { AxiosError } from "axios";
 
 const axiosInstance = axios.create({
   baseURL: process.env.REACT_APP_WEATHER_API_URL,
-  headers: {
-    "Content-Type": "application/json",
-  },
 });
 
-axios.interceptors.request.use((config) => {
+axiosInstance.interceptors.request.use((config) => {
   const params = {
     ...config.params,
     appid: process.env.REACT_APP_WEATHER_API_KEY,

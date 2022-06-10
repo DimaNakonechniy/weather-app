@@ -5,13 +5,17 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 
-import { SearchForm } from "components";
+import { useWeather } from "hooks";
+
+import { SearchForm, WeatherInfoTable } from "components";
 
 const MainLayout = () => {
   const [search, setSearch] = useState<string>("");
 
-  const handleSearchSubmit = () => {
-    console.log(search);
+  const { data } = useWeather(search);
+
+  const handleSearchSubmit = (value: string) => {
+    setSearch(value);
   };
 
   return (
@@ -25,12 +29,14 @@ const MainLayout = () => {
       </AppBar>
 
       <Paper elevation={5}>
-        <SearchForm
-          value={search}
-          onChange={setSearch}
-          onSubmit={handleSearchSubmit}
-        />
+        <SearchForm value={search} onSubmit={handleSearchSubmit} />
       </Paper>
+
+      {data?.name && (
+        <Paper elevation={5}>
+          <WeatherInfoTable data={data} />
+        </Paper>
+      )}
     </>
   );
 };
