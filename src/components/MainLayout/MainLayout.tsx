@@ -34,7 +34,7 @@ const MainLayout = () => {
 
       {data?.name && (
         <Paper elevation={5}>
-          <WeatherInfoTable data={data} />
+          <WeatherInfoTable weatherData={data} />
         </Paper>
       )}
     </>

@@ -4,22 +4,30 @@ import TableBody from "@mui/material/TableBody";
 import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 
+import { WeatherInfo } from "types";
+
 import { generateWeatherInfoArray } from "helpers/weather";
 
-const WeatherInfoTable = ({ data }: any) => (
+type WeatherInfoTableProps = {
+  weatherData: WeatherInfo;
+};
+
+const WeatherInfoTable = ({ weatherData }: WeatherInfoTableProps) => (
   <div>
     <Typography variant="h6" align="center">
-      Weather in {data.name}, {data.sys.country}
+      Weather in {weatherData.name}, {weatherData.sys.country}
     </Typography>
 
     <Table>
       <TableBody>
-        {generateWeatherInfoArray(data).map((row) => (
+        {generateWeatherInfoArray(weatherData).map((row) => (
           <TableRow key={row.name}>
             <TableCell component="th" scope="row">
               {row.name}
             </TableCell>
-            <TableCell align="right">{row.value}</TableCell>
+            <TableCell align="right">
+              <Typography color="secondary">{row.value}</Typography>
+            </TableCell>
           </TableRow>
         ))}
       </TableBody>
