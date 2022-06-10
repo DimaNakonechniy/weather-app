@@ -1,15 +1,28 @@
-import { useState, SyntheticEvent } from "react";
+import { SyntheticEvent } from "react";
 
 import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
-const SearchForm = () => {
-  const [searchValue, setSearchValue] = useState<string>("");
+type SearchFormProps = {
+  value: string;
+  onChange: (value: string) => void;
+  onSubmit: () => void;
+};
 
-  const onChange = (event: SyntheticEvent) => {
+const SearchForm = ({
+  value: searchValue,
+  onChange,
+  onSubmit,
+}: SearchFormProps) => {
+  const handleChange = (event: SyntheticEvent) => {
     const { value } = event.target as HTMLInputElement;
-    setSearchValue(value);
+    onChange(value);
+  };
+
+  const handleSubmit = (event: SyntheticEvent) => {
+    event.preventDefault();
+    onSubmit();
   };
 
   return (
@@ -20,10 +33,14 @@ const SearchForm = () => {
           label="Your city name"
           fullWidth
           value={searchValue}
-          onChange={onChange}
+          onChange={handleChange}
         />
 
-        <Button type="submit" fullWidth disabled={!searchValue.length}>
+        <Button
+          type="submit"
+          onClick={handleSubmit}
+          disabled={!searchValue.length}
+        >
           Search
         </Button>
       </Stack>

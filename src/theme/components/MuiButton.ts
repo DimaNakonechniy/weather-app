@@ -9,6 +9,7 @@ const MuiButton = {
   defaultProps: MuiButtonDefaultProps,
   styleOverrides: {
     root: {
+      minWidth: 130,
       border: "2px solid transparent",
       textTransform: "none" as const,
       fontWeight: "700",

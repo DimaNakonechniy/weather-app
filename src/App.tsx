@@ -3,7 +3,7 @@ import Container from "@mui/material/Container";
 
 import theme from "theme";
 
-import MainLayout from "./components/MainLayout/MainLayout";
+import { MainLayout } from "components";
 
 const App = () => (
   <ThemeProvider theme={theme}>
