@@ -10,4 +10,13 @@ export type WeatherInfo = {
     sunrise: number;
     sunset: number;
   };
+  weather?: Weather[];
+  coord?: {
+    lat: number;
+    lon: number;
+  };
+};
+
+type Weather = {
+  description: string;
 };

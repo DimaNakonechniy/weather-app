@@ -4,10 +4,11 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
+import Box from "@mui/material/Box";
 
 import { useWeather } from "hooks";
 
-import { SearchForm, WeatherInfoTable } from "components";
+import { SearchForm, WeatherInfoTable, WeatherMap } from "components";
 
 const MainLayout = () => {
   const [search, setSearch] = useState<string>("");
@@ -34,7 +35,10 @@ const MainLayout = () => {
 
       {data?.name && (
         <Paper elevation={5}>
-          <WeatherInfoTable weatherData={data} />
+          <Box pt={2}>
+            <WeatherInfoTable weatherData={data} />
+            <WeatherMap data={data} />
+          </Box>
         </Paper>
       )}
     </>
